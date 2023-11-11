@@ -10,7 +10,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -31,13 +34,15 @@ import com.example.easyway.R
 
 @Composable
 fun RouteView(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onRouteAddButtonClick: () -> Unit
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .background(Color(0xFFF8F8F8))
-            .padding(horizontal = 16.dp, vertical = 20.dp)
+            .padding(horizontal = 16.dp, vertical = 20.dp),
+        verticalArrangement = Arrangement.SpaceBetween
     ) {
         //리워드
         Column(
@@ -206,11 +211,33 @@ fun RouteView(
             }
 
         }
+
+        //경로 추가 버튼
+        Button(
+            onClick = onRouteAddButtonClick,
+            modifier = modifier
+                .padding(vertical = 8.dp)
+                .fillMaxWidth()
+                .wrapContentHeight(),
+            shape = RoundedCornerShape(10.dp),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = colorResource(id = R.color.sub_0),
+                contentColor = Color.White
+            )
+        ) {
+            Text(
+                text = "경로 추가하기",
+                fontSize = 16.sp
+            )
+        }
     }
 }
 
 @Preview
 @Composable
 private fun RouteViewPreview() {
-    RouteView()
+    RouteView(
+        modifier = Modifier,
+        onRouteAddButtonClick = {}
+    )
 }
