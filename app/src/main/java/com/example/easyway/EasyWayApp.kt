@@ -111,7 +111,20 @@ private fun MainTab(
                     onClick = {
                         tabIndex = index
                     },
-                    text = { Text(text = tab) }
+                    text = { Text(text = tab) },
+                    icon = {
+                        when (index) {
+                            0 -> Icon(
+                                painter = painterResource(id = R.drawable.round_search_24),
+                                contentDescription = null
+                            )
+
+                            1 -> Icon(
+                                painter = painterResource(id = R.drawable.outline_add_location_alt_24),
+                                contentDescription = null
+                            )
+                        }
+                    }
                 )
             }
         }
