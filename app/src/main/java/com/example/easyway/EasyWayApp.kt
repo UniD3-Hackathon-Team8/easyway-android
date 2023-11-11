@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
@@ -28,23 +27,41 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.easyway.ui.road.RoadView
+import com.example.easyway.ui.route.RouteMapView
 import com.example.easyway.ui.route.RouteView
 import com.example.easyway.ui.theme.EasyWayTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EasyWayApp() {
     EasyWayTheme {
-        Scaffold(
-            topBar = { EasyWayAppbar() }
+        val navController = rememberNavController()
+
+        NavHost(
+            navController = navController,
+            startDestination = "Main"
         ) {
-            MainTab(
-                modifier = Modifier
-                    .padding(it),
-                onRouteAddButtonClick = {}
-            )
+            composable("Main") {
+                EasyWayApp(Modifier)
+            }
         }
+    }
+}
+
+@Composable
+private fun EasyWayApp(
+    modifier: Modifier = Modifier
+) {
+    Scaffold(
+        topBar = { EasyWayAppbar() }
+    ) {
+        MainTab(
+            modifier = Modifier
+                .padding(it),
+        )
     }
 }
 
@@ -97,11 +114,12 @@ private fun EasyWayAppbar() {
 @Composable
 private fun MainTab(
     modifier: Modifier = Modifier,
-    onRouteAddButtonClick: () -> Unit
 ) {
     var tabIndex by remember { mutableStateOf(0) }
 
     val tabs = listOf("길찾기", "경로 추가")
+
+    var routeAddStart by remember { mutableStateOf(false) }
 
     Column(
         modifier = modifier
@@ -134,12 +152,17 @@ private fun MainTab(
         }
 
         //내용물
-        when(tabIndex) {
+        when (tabIndex) {
             0 -> RoadView()
-            1 -> RouteView(
-                modifier = modifier,
-                onRouteAddButtonClick = onRouteAddButtonClick
-            )
+            1 -> {
+                if (routeAddStart) {
+                    RouteMapView()
+                } else {
+                    RouteView {
+                        routeAddStart = true
+                    }
+                }
+            }
         }
     }
 }

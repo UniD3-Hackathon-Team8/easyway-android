@@ -35,7 +35,7 @@ import com.example.easyway.R
 @Composable
 fun RouteView(
     modifier: Modifier = Modifier,
-    onRouteAddButtonClick: () -> Unit
+    onAddRouteButtonClick: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -46,7 +46,7 @@ fun RouteView(
     ) {
         //리워드
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .background(
                     color = Color.White,
@@ -69,7 +69,7 @@ fun RouteView(
             )
 
             Divider(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .height(1.dp)
             )
@@ -83,7 +83,7 @@ fun RouteView(
 
         //내가 추가한 경로
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .background(
                     color = Color.White,
@@ -106,13 +106,13 @@ fun RouteView(
             )
 
             Divider(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .height(1.dp)
             )
 
             Row(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
                 verticalAlignment = Alignment.CenterVertically
@@ -120,7 +120,7 @@ fun RouteView(
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_content_paste_search_24),
                     contentDescription = null,
-                    modifier = modifier
+                    modifier = Modifier
                         .size(48.dp)
                 )
 
@@ -141,13 +141,13 @@ fun RouteView(
             }
 
             Divider(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .height(1.dp)
             )
 
             Row(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
                 verticalAlignment = Alignment.CenterVertically
@@ -155,7 +155,7 @@ fun RouteView(
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_content_paste_search_24),
                     contentDescription = null,
-                    modifier = modifier
+                    modifier = Modifier
                         .size(48.dp)
                 )
 
@@ -176,13 +176,13 @@ fun RouteView(
             }
 
             Divider(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth()
                     .height(1.dp)
             )
 
             Row(
-                modifier = modifier
+                modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally),
                 verticalAlignment = Alignment.CenterVertically
@@ -190,7 +190,7 @@ fun RouteView(
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_content_paste_search_24),
                     contentDescription = null,
-                    modifier = modifier
+                    modifier = Modifier
                         .size(48.dp)
                 )
 
@@ -214,8 +214,8 @@ fun RouteView(
 
         //경로 추가 버튼
         Button(
-            onClick = onRouteAddButtonClick,
-            modifier = modifier
+            onClick = onAddRouteButtonClick,
+            modifier = Modifier
                 .padding(vertical = 8.dp)
                 .fillMaxWidth()
                 .wrapContentHeight(),
@@ -238,6 +238,6 @@ fun RouteView(
 private fun RouteViewPreview() {
     RouteView(
         modifier = Modifier,
-        onRouteAddButtonClick = {}
+        onAddRouteButtonClick = {}
     )
 }
