@@ -28,6 +28,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.easyway.ui.road.RoadView
+import com.example.easyway.ui.route.RouteView
 import com.example.easyway.ui.theme.EasyWayTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -131,8 +133,8 @@ private fun MainTab(
 
         //내용물
         when(tabIndex) {
-            0 -> Text(text = "0")
-            1 -> Text(text = "1")
+            0 -> RoadView()
+            1 -> RouteView()
         }
     }
 }
