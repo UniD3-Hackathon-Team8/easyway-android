@@ -41,7 +41,8 @@ fun EasyWayApp() {
         ) {
             MainTab(
                 modifier = Modifier
-                    .padding(it)
+                    .padding(it),
+                onRouteAddButtonClick = {}
             )
         }
     }
@@ -95,7 +96,8 @@ private fun EasyWayAppbar() {
 
 @Composable
 private fun MainTab(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onRouteAddButtonClick: () -> Unit
 ) {
     var tabIndex by remember { mutableStateOf(0) }
 
@@ -134,7 +136,10 @@ private fun MainTab(
         //내용물
         when(tabIndex) {
             0 -> RoadView()
-            1 -> RouteView()
+            1 -> RouteView(
+                modifier = modifier,
+                onRouteAddButtonClick = onRouteAddButtonClick
+            )
         }
     }
 }
