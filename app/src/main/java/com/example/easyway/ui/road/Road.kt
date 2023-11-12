@@ -1,5 +1,10 @@
+@file:Suppress("DEPRECATION")
+
 package com.example.easyway.ui.road
 
+import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -36,57 +41,39 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.example.easyway.R
 
 @Composable
 fun RoadView(
     modifier: Modifier = Modifier
 ) {
-    var query by remember { mutableStateOf("") }
-
     Box(
         modifier = modifier
             .fillMaxSize()
     ) {
-        //지도
+        //웹사이트
+        AndroidView(
+            factory = {
+                WebView(it).apply {
+                    layoutParams = ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                    )
+                    webViewClient = WebViewClient()
 
+                    settings.javaScriptEnabled = true
 
-        Column(
-            modifier = modifier
-                .matchParentSize()
-                .padding(horizontal = 16.dp, vertical = 20.dp),
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            //검색바
-            RoadSearchBar(
-                text = query,
-                onTextChanged = { query = it },
-                onKeyboardSearch = {},
-            )
-
-            //gps 버튼
-            Button(
-                onClick = { /*TODO*/ },
-                modifier = modifier
-                    .size(48.dp),
-                shape = CircleShape,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.White,
-                    contentColor = colorResource(id = R.color.main_0)
-                ),
-                contentPadding = PaddingValues(0.dp)
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.outline_gps_fixed_24),
-                    contentDescription = null,
-                    tint = colorResource(id = R.color.main_0)
-                )
+                    loadUrl("http://merseong.iptime.org:3000/main")
+                }
+            },
+            update = {
+                it.loadUrl("http://merseong.iptime.org:3000/main")
             }
-        }
-
-
+        )
     }
 }
+
 
 @Composable
 private fun RoadSearchBar(

@@ -59,6 +59,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -80,4 +81,11 @@ dependencies {
     //네비게이션
     val nav_version = "2.7.5"
     implementation("androidx.navigation:navigation-compose:$nav_version")
+
+    //웹뷰
+    implementation("com.google.accompanist:accompanist-webview:0.33.1-alpha")
+    //implementation("io.github.KevinnZou:compose-webview:0.33.3")
+
+    implementation ("com.google.android.libraries.places:places:3.2.0")
+    implementation ("com.google.accompanist:accompanist-permissions:0.33.2-alpha")
 }

@@ -1,5 +1,7 @@
 package com.example.easyway
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -111,6 +113,7 @@ private fun EasyWayAppbar() {
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 private fun MainTab(
     modifier: Modifier = Modifier,
